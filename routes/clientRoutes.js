@@ -1,20 +1,15 @@
 const express = require('express');
 const router  = express.Router();
-const {
-  getAllClients,
-  getClientById,
-  createClient,
-  updateClient,
-  deleteClient,
-} = require('../controllers/clientController');
+const { getAllClients, getClientById, createClient, updateClient, deleteClient } = require('../controllers/clientController');
+const { protect, authorize } = require('../middleware/authMiddleware');
 
 router.route('/')
-  .get(getAllClients)
-  .post(createClient);
+  .get(protect, authorize('clients', 'read'),    getAllClients)
+  .post(protect, authorize('clients', 'create'), createClient);
 
 router.route('/:id')
-  .get(getClientById)
-  .put(updateClient)
-  .delete(deleteClient);
+  .get(protect, authorize('clients', 'read'),     getClientById)
+  .put(protect, authorize('clients', 'update'),   updateClient)
+  .delete(protect, authorize('clients', 'delete'), deleteClient);
 
 module.exports = router;

@@ -1,15 +1,17 @@
 {
   "name": "tp-api-rest",
-  "version": "1.0.0",
-  "description": "Mini API REST - Clients, Produits, Commandes",
+  "version": "2.0.0",
+  "description": "Mini API REST - Clients, Produits, Commandes + Rôles & JWT",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.6.3"
   },
   "devDependencies": {
